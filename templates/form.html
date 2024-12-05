@@ -3,18 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Submission</title>
+    <title>Conference Registration - Login</title>
+    <style>
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fa;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #0077cc;
+    color: white;
+}
+
+header .logo img {
+    width: 120px;
+}
+
+header .user-status {
+    display: flex;
+    align-items: center;
+}
+
+header .user-icon {
+    margin-right: 8px;
+}
+
+header .user-status-text {
+    font-size: 16px;
+}
+
+/* Navigation Bar Styles */
+nav {
+    background-color: #333;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px 10px;
+}
+
+nav ul li a.active {
+    border-bottom: 2px solid #0077cc;
+}
+
+/* Content Section - Center Align */
+.content-item {
+    display: none; /* Hide all content by default */
+    text-align: center; /* Center the content inside the div */
+    padding: 20px;
+}
+
+#home-content {
+    display: block; /* Home content will be visible initially */
+}
+
+#login-content {
+    display: none; /* Login form is hidden initially */
+}
+
+/* Login Form Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* Adjust for nav bar height */
+    background-color: #f4f7fa;
+    padding-top: 20px;
+}
+
+.login-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: left; /* Align text (labels, inputs) to the left */
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center; /* Center the header text */
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #005fa3;
+}
+
+/* Useful Links Section */
+.useful-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.useful-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.useful-links ul li {
+    margin-bottom: 10px;
+}
+
+.useful-links ul li a {
+    color: #0077cc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.useful-links ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+    </style>
 </head>
 <body>
-    <h1>Submit your details</h1>
-    <form method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br><br>
-        <button type="submit">Submit</button>
-    </form>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Conference Logo">
+        </div>
+        <div class="user-status">
+            <span class="user-icon">👤</span>
+            <span class="user-status-text">Logged Out</span>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/" id="home-tab" class="active" onclick="showHome()">Home</a></li>
+            <li><a href="/" id="login-tab" onclick="showLogin()">Login</a></li>
+            <li><a href="/view">View Users</a></li>
+            
+    
+        </ul>
+    </nav>
+
+    <!-- Content Section -->
+    <section id="content">
+        <!-- Welcome Message for Home -->
+        <div id="home-content" class="content-item">
+            <h2>Welcome to the Conference Registration!</h2>
+            <p>We are excited to have you join us at this amazing event.</p>
+        </div>
+
+        <!-- Login Form for Login -->
+        <div id="login-content" class="content-item">
+            <div class="login-form">
+                <h2>Login</h2>
+                <form method="post">
+                    <div class="input-group">
+                        <label for="name">Username:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                <h1>Submit your details</h1>                
+                <div class="useful-links">
+                    <ul>
+                        <li><a href="#">Forgot your password?</a></li>
+                        <li><a href="#">Create an account</a></li>
+                        <li><a href="#">Problems to log in?</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Conference Registration. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to show the Home content and hide Login content
+function showHome() {
+    document.getElementById('home-content').style.display = 'block'; // Show Home content
+    document.getElementById('login-content').style.display = 'none'; // Hide Login content
+    document.getElementById('home-tab').classList.add('active'); // Highlight Home tab
+    document.getElementById('login-tab').classList.remove('active'); // Remove highlight from Login tab
+}
+
+// Function to show the Login content and hide Home content
+function showLogin() {
+    document.getElementById('home-content').style.display = 'none'; // Hide Home content
+    document.getElementById('login-content').style.display = 'block'; // Show Login content
+    document.getElementById('login-tab').classList.add('active'); // Highlight Login tab
+    document.getElementById('home-tab').classList.remove('active'); // Remove highlight from Home tab
+}
+
+// Default to show the Home content when the page loads
+window.onload = showHome;
+
+    </script>
 </body>
 </html>
